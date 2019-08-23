@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const swaggerServer = express();
 const expressSwagger = require('express-swagger-generator')(swaggerServer);

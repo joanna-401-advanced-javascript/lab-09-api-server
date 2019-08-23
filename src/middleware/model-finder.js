@@ -5,6 +5,12 @@ const readdir = util.promisify(fs.readdir);
 
 const modelsFolder = `${__dirname}/../models`;
 
+/***
+ * Instantiates the correct model depending on the request
+ * @param req {string}
+ * @param res {object}
+ * @param next, to next middleware
+ */
 const load = (req,res,next) => {
   let modelName = req.params.model.replace(/[^a-z0-9-_]/gi, '');
   const Model = require(`../models/${modelName}/${modelName}-model.js`);
@@ -12,6 +18,10 @@ const load = (req,res,next) => {
   next();
 };
 
+/***
+ * Filters through modelsFolder
+ * @returns { * | void }
+ */
 const list = () => {
   return readdir(modelsFolder)
     .then(contents =>
