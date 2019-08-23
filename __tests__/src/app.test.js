@@ -4,7 +4,7 @@ const {app} = require('../../src/app');
 const supergoose = require('./supergoose');
 const mockRequest = supergoose(app);
 
-xdescribe('Categories API', () => {
+describe('Categories API', () => {
   test('Can post a new category, returns saved category', () => {
     const testCategory = {
       name: 'vacation',
