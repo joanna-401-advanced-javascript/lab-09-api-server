@@ -19,14 +19,23 @@ describe('Categories API', () => {
       });
   });
 
-  // test('Can get existing categories', () => {
-  //   return mockRequest.get('/api/v1/categories')
+  // test('Can get existing category', () => {
+  //   const testCategory = {
+  //     name: 'chickpeas',
+  //     description: 'crunchy hummus'
+  //   };
+  //
+  //   return mockRequest.post('/api/v1/categories')
+  //     .send(testCategory)
   //     .then(response => {
-  //       expect(response.status).toEqual(200);
-  //       expect(response.body.results.count).toEqual(1);
-  //       expect(response.body.results.results[0].name).toEqual('vacation');
-  //     });
-  // });
+  //       return mockRequest.get(`/api/v1/categories/${response.body._id}`)
+  //         .then(response => {
+  //           Object.keys(testCategory).forEach(key => {
+  //             expect(testCategory[key]).toEqual(response.body.results[0][key]);
+  //           });
+  //         });
+  //     })
+ // });
 
   test('Can modify existing category', () => {
     const testCategoryTwo = {

@@ -50,4 +50,4 @@ Deletes existing record
 * Lint tests: `npm run lint`
 
 #### UML
-![UML Image]()
+![UML Image](./uml.jpg)
