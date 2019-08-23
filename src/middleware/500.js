@@ -1,5 +1,5 @@
 'use strict';
-/***
+/**
  * Handles errors
  * @param err {object}
  * @param req {object}
