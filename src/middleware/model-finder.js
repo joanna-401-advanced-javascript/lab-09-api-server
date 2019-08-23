@@ -7,14 +7,14 @@ const modelsFolder = `${__dirname}/../models`;
 
 /***
  * Instantiates the correct model depending on the request
- * @param req {string}
- * @param res {object}
+ * @param request {string}
+ * @param response {object}
  * @param next, to next middleware
  */
-const load = (req,res,next) => {
-  let modelName = req.params.model.replace(/[^a-z0-9-_]/gi, '');
+const load = (request, response, next) => {
+  let modelName = request.params.model.replace(/[^a-z0-9-_]/gi, '');
   const Model = require(`../models/${modelName}/${modelName}-model.js`);
-  req.model = new Model();
+  request.model = new Model();
   next();
 };
 
