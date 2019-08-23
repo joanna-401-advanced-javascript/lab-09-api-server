@@ -10,18 +10,28 @@
 * [front-end](https://joanna-lab-09.herokuapp.com/)
 
 #### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc]() (Server assignments)
+* [api docs](./docs/swagger.json)
+* [jsdoc](https://joanna-lab-09.herokuapp.com/docs)
 
 ### Modules
-#### `modulename.js`
+#### `v1.js`
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+###### `handleGetAll() -> object`
+Gets all existing records
 
-###### `bar(array) -> array`
-Usage Notes or examples
+###### `handleGetOne(id) -> object`
+Gets one existing record by id
+
+###### `handlePost() -> object`
+Creates new record
+
+###### `handlePut(id) -> object`
+Updates existing record
+
+###### `handleDelete(id) -> object`
+Deletes existing record
+
 
 ### Setup
 #### `.env` requirements
@@ -40,4 +50,4 @@ Usage Notes or examples
 * Lint tests: `npm run lint`
 
 #### UML
-Link to an image of the UML for your application and response to events
+![UML Image]()
