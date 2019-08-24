@@ -1,5 +1,10 @@
 'use strict';
 /**
+ * API Server Module
+ * @module src/middleware/500
+ */
+
+/**
  * Handles errors
  * @param err {object}
  * @param req {object}

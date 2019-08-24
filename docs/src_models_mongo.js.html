@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: src/app.js</title>
+    <title>JSDoc: Source: src/models/mongo.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: src/app.js</h1>
+    <h1 class="page-title">Source: src/models/mongo.js</h1>
 
     
 
@@ -27,56 +27,71 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
 /**
  * API Server Module
- * @module src/app
+ * @module src/models/mongo
  */
 
-const cwd = process.cwd();
+class Model {
+  /***
+   * Model constructor
+   * @param schema {object} - mongo schema
+   */
+  constructor(schema) {
+    this.schema = schema;
+  }
 
-// 3rd Party Resources
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
+  jsonSchema() {
+    console.log(typeof this.schema.jsonSchema);
+    return typeof this.schema.jsonSchema === 'function'
+      ? this.schema.jsonSchema()
+      : {};
+  }
 
-// Esoteric Resources
-const errorHandler = require( `${cwd}/src/middleware/500.js`);
-const notFound = require( `${cwd}/src/middleware/404.js` );
-const v1Router = require( `${cwd}/src/api/v1.js` );
+  /***
+   * Retrieves one or more records
+   * @param _id {string}, optional mongo record id
+   * @returns {count:#, results[{*}]} | {*}
+   */
+  get(_id) {
+    let queryObject = _id ? { _id } : {};
+    return this.schema.find(queryObject);
+  }
 
+  /***
+   * Creates a new record
+   * @param record {object}, matches the form of the schema
+   * @returns {*}
+   */
+  create(record) {
+    console.log('r',record);
+    let newRecord = new this.schema(record);
+    console.log('n', newRecord);
+    return newRecord.save();
+  }
 
-// Prepare the express app
-const app = express();
+  /***
+   * Updates a record
+   * @param _id {string} mongo record id
+   * @param record {object}, the data to replace. Must have id.
+   * @returns {*}
+   */
+  update(_id, record) {
+    return this.schema.findByIdAndUpdate(_id, record, { new: true });
+  }
 
-// App Level MW
-app.use(cors());
-app.use(morgan('dev'));
+  /***
+   * Deletes a record
+   * @param _id {string} mongo record id
+   * @returns {*}
+   */
+  delete(_id) {
+    return this.schema.findByIdAndDelete(_id);
+  }
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+}
 
-// Static Routes
-app.use('/docs', express.static('docs'));
-
-// Routes
-app.use(v1Router);
-
-// Catchalls
-app.use(notFound);
-app.use(errorHandler);
-
-/**
- * Start Server on specified port
- * @param port {integer} (defaults to process.env.PORT)
- */
-let start = (port = process.env.PORT) => {
-  app.listen(port, () => {
-    console.log(`Server Up on ${port}`);
-  });
-};
-
-module.exports = {app,start};
+module.exports = Model;
 </code></pre>
         </article>
     </section>

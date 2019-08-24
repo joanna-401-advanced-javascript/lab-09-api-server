@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * API Server Module
+ * @module src/middleware/404
+ */
 
 /**
  * Handles 404 errors

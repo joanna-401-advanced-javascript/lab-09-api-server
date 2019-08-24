@@ -1,4 +1,9 @@
 'use strict';
+/**
+ * API Server Module
+ * @module src/middleware/model-finder
+ */
+
 const fs = require('fs');
 const util = require('util');
 const readdir = util.promisify(fs.readdir);

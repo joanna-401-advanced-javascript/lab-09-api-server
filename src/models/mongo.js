@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * API Server Module
+ * @module src/models/mongo
+ */
 
 class Model {
   /***
