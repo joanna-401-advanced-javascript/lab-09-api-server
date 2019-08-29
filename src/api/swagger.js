@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const swaggerServer = express();
 const expressSwagger = require('express-swagger-generator')(swaggerServer);
@@ -22,10 +24,10 @@ let options = {
     },
   },
   basedir: __dirname, //app absolute path
-  files: ['./*.js'], //Path to the API handle folder
+  files: ['./api/v1.js'], //Path to the API handle folder
 };
 expressSwagger(options);
 
 // start up a specific standalone swagger server on a specific port
 // http://[domain]/api-docs
-swaggerServer.listen(3333);
+// swaggerServer.listen(process.env.SWAGGER_PORT);
